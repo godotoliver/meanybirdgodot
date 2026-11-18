@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://c80l6oh87kxj3"]
+
+[ext_resource type="Script" uid="uid://dtbiucsli0cnj" path="res://Scripts/game_controller.gd" id="1_344ge"]
+[ext_resource type="Script" uid="uid://cehyst78hx3qg" path="res://Scripts/player.gd" id="2_8gbba"]
+[ext_resource type="Texture2D" uid="uid://bua1cs4tvt1xj" path="res://Assets/Bird.png" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://bxroc1me8c6j6" path="res://Scripts/spawner.gd" id="4_kry3j"]
+[ext_resource type="PackedScene" uid="uid://d36vcuo1ayg14" path="res://Scenes/Objects/spikes.tscn" id="5_21xkr"]
+[ext_resource type="PackedScene" uid="uid://ntorycgax1x7" path="res://Scenes/Objects/ground.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://b4nglqm35kpsc" path="res://Scenes/Objects/user_interface.tscn" id="7_6bp64"]
+[ext_resource type="Shader" uid="uid://drojcvnardcrm" path="res://Scenes/grayscale.gdshader" id="8_344ge"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gbba"]
+radius = 57.914314
+height = 323.89725
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ynf5e"]
+shader = ExtResource("8_344ge")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6bp64"]
+load_path = "res://.godot/imported/Background.jpg-e53c948bbfe9996c99cd309802213d2d.ctex"
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("user_interface", "spawner")]
+script = ExtResource("1_344ge")
+user_interface = NodePath("UserInterface")
+spawner = NodePath("Spawner")
+
+[node name="Player" type="RigidBody2D" parent="." node_paths=PackedStringArray("game_controller")]
+gravity_scale = 1.8
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_8gbba")
+velocity = 700
+game_controller = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+z_index = 1
+position = Vector2(-15.999992, -28.000004)
+scale = Vector2(0.94814813, 1)
+texture = ExtResource("2_bo1nx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-10.000004, -30.000004)
+rotation = 1.5865043
+shape = SubResource("CapsuleShape2D_8gbba")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.415, 0.415)
+limit_left = -1162
+limit_top = -685
+limit_right = 1520
+limit_bottom = 710
+editor_draw_limits = true
+
+[node name="Spawner" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource("4_kry3j")
+spikes = ExtResource("5_21xkr")
+height = 355
+spawn_time = 1.5
+
+[node name="Ground" parent="." instance=ExtResource("6_21xkr")]
+position = Vector2(0, -64)
+collision_layer = 0
+
+[node name="UserInterface" parent="." instance=ExtResource("7_6bp64")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRectGrayscale" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_ynf5e")
+offset_left = -558.0
+offset_top = -854.0
+offset_right = 585.0
+offset_bottom = 793.0
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(2500, 0)
+autoscroll = Vector2(-500, 0)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(65.50011, -38.999977)
+scale = Vector2(1.0016667, 0.76214325)
+texture = SubResource("CompressedTexture2D_6bp64")
+
+[connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]

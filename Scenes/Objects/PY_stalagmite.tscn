@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdigvosfug5ma"]
+
+[ext_resource type="Script" uid="uid://fn0wd2tdyos4" path="res://Scripts/spikes.gd" id="1_6h6su"]
+[ext_resource type="Texture2D" uid="uid://bex88laq1rhqf" path="res://Assets/PY_Stalagmite.png" id="1_066pk"]
+[ext_resource type="Script" uid="uid://cswn4x05ejpqr" path="res://Scripts/collectibles.gd" id="3_mfsvy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb8qh"]
+size = Vector2(179, 814)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3e7n"]
+size = Vector2(17.9, 38.6)
+
+[node name="Stalagmite" type="CharacterBody2D"]
+script = ExtResource("1_6h6su")
+speed = 500
+time_to_destroy = 3
+
+[node name="StalagmiteBottom" type="Sprite2D" parent="."]
+position = Vector2(-46.5, 600.5)
+scale = Vector2(2.44286, 8.13)
+texture = ExtResource("1_066pk")
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="."]
+position = Vector2(-42.5, 600)
+shape = SubResource("RectangleShape2D_wb8qh")
+
+[node name="StalagmiteTop" type="Sprite2D" parent="."]
+position = Vector2(-42.5529, -600.75)
+rotation = -3.14159
+scale = Vector2(2.50151, 8.115)
+texture = ExtResource("1_066pk")
+
+[node name="CollisionTop" type="CollisionShape2D" parent="."]
+position = Vector2(-42.5, -600)
+shape = SubResource("RectangleShape2D_wb8qh")
+
+[node name="Move" type="Node2D" parent="."]
+
+[node name="Score" type="Area2D" parent="."]
+script = ExtResource("3_mfsvy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Score"]
+position = Vector2(-42.5, 0)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_e3e7n")
+debug_color = Color(0.943455, 0.215028, 0.271228, 0.42)

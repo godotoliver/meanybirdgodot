@@ -1,0 +1,128 @@
+[gd_scene load_steps=15 format=3 uid="uid://d36vcuo1ayg14"]
+
+[ext_resource type="Script" uid="uid://fn0wd2tdyos4" path="res://Scripts/spikes.gd" id="1_nuli0"]
+[ext_resource type="Texture2D" uid="uid://crd20tarlk228" path="res://Assets/MeteorSpike.png" id="2_osawo"]
+[ext_resource type="Script" uid="uid://cswn4x05ejpqr" path="res://Scripts/collectibles.gd" id="3_qvr35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb8qh"]
+size = Vector2(99.75708, 418.49072)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osawo"]
+size = Vector2(104.17669, 395.672)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3e7n"]
+size = Vector2(8, 125.55157)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ebgvn"]
+a = Vector2(20.835339, -83.38214)
+b = Vector2(3.1568718, 85.74213)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_xhv15"]
+a = Vector2(-57.45502, -82.59552)
+b = Vector2(-26.517702, 80.23563)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hagkc"]
+a = Vector2(-27.149076, 77.87576)
+b = Vector2(-3.7882428, 110.12735)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_law08"]
+a = Vector2(-1.2627473, 110.91397)
+b = Vector2(12.627478, 88.88849)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_o7bgg"]
+a = Vector2(43.0708, -85.280396)
+b = Vector2(10.8355465, 88.37932)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_r2ts4"]
+a = Vector2(-64.50131, -86.76584)
+b = Vector2(-32.003983, 79.10794)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vo4j2"]
+a = Vector2(-30.46244, 84.53107)
+b = Vector2(-24.657185, 99.154594)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_luwf4"]
+a = Vector2(-20.284357, 98.10691)
+b = Vector2(-0.87288284, 81.98483)
+
+[node name="Spikes" type="CharacterBody2D"]
+scale = Vector2(0.5169215, 0.4476249)
+script = ExtResource("1_nuli0")
+speed = 560
+time_to_destroy = 3
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(-1.9345292, 1455.4597)
+scale = Vector2(3.064, 2.888)
+shape = SubResource("RectangleShape2D_wb8qh")
+
+[node name="SpikeTop" type="Sprite2D" parent="."]
+position = Vector2(0.9672861, -1845.5916)
+scale = Vector2(1.127585, 3.114863)
+texture = ExtResource("2_osawo")
+
+[node name="CollisionTop" type="CollisionShape2D" parent="."]
+position = Vector2(-4.8363204, -2179.2798)
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("RectangleShape2D_osawo")
+
+[node name="Move" type="Node2D" parent="."]
+
+[node name="Score" type="Area2D" parent="."]
+script = ExtResource("3_qvr35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Score"]
+position = Vector2(1.00001, -402.12228)
+scale = Vector2(30.639996, 9.999998)
+shape = SubResource("RectangleShape2D_e3e7n")
+debug_color = Color(0.943455, 0.215028, 0.271228, 0.42)
+
+[node name="CollisionTopTip1" type="CollisionShape2D" parent="."]
+position = Vector2(54.166824, -1376.1523)
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("SegmentShape2D_ebgvn")
+
+[node name="CollisionTopTip2" type="CollisionShape2D" parent="."]
+position = Vector2(21.279823, -1394.0242)
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("SegmentShape2D_xhv15")
+
+[node name="CollisionTopTip3" type="CollisionShape2D" parent="."]
+position = Vector2(21.279823, -1394.0242)
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("SegmentShape2D_hagkc")
+
+[node name="CollisionTopTip4" type="CollisionShape2D" parent="."]
+position = Vector2(21.279823, -1394.0242)
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("SegmentShape2D_law08")
+
+[node name="SpikeBottom" type="Sprite2D" parent="."]
+position = Vector2(5.803591, 1248.7225)
+scale = Vector2(1.2714479, 3.3972356)
+texture = ExtResource("2_osawo")
+
+[node name="CollisionBottomTip1" type="CollisionShape2D" parent="."]
+position = Vector2(-13.541718, 612.11945)
+rotation = -3.086566
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("SegmentShape2D_o7bgg")
+
+[node name="CollisionBottomTip2" type="CollisionShape2D" parent="."]
+position = Vector2(-46.42872, 594.2476)
+rotation = -3.086566
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("SegmentShape2D_r2ts4")
+
+[node name="CollisionBottomTip3" type="CollisionShape2D" parent="."]
+position = Vector2(-46.42872, 594.2476)
+rotation = -3.086566
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("SegmentShape2D_vo4j2")
+
+[node name="CollisionBottomTip4" type="CollisionShape2D" parent="."]
+position = Vector2(-46.42872, 594.2476)
+rotation = -3.086566
+scale = Vector2(3.064, 2.8400002)
+shape = SubResource("SegmentShape2D_luwf4")

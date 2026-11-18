@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4nglqm35kpsc"]
+
+[ext_resource type="Script" uid="uid://bhoc84w8fgn41" path="res://Scripts/score.gd" id="1_kvude"]
+
+[node name="UserInterface" type="CanvasLayer"]
+layer = 10
+
+[node name="ScoreControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ScoreLabel" type="Label" parent="ScoreControl"]
+layout_mode = 0
+offset_left = 181.0
+offset_top = -9.99994
+offset_right = 221.0
+offset_bottom = 73.0001
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_kvude")
+
+[node name="GameOverControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -100.0
+offset_right = -140.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOverControl"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = -35.0
+offset_right = 356.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 60
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="GameOverControl"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 298.0
+offset_bottom = 211.0
+theme_override_font_sizes/font_size = 60
+text = "Restart"
